@@ -41,6 +41,11 @@ public class RequestController {
         return  new ResponseEntity<JobResponse>(jobResponse, new HttpHeaders(), HttpStatus.OK);
     }
 
+    @GetMapping("/hold-requests/{trackingId}")
+    public ResponseEntity<NYPLHoldResponse> nyplHoldItem(@PathVariable("trackingId") String trackingId){
+        NYPLHoldResponse nyplHoldResponse = requestService.nyplHoldItem(trackingId);
+        return  new ResponseEntity<NYPLHoldResponse>(nyplHoldResponse, new HttpHeaders(), HttpStatus.OK);
+    }
     @PostMapping("/hold-item-requests")
     public ResponseEntity<ItemHoldResponse> holdItem(@RequestBody ItemRequestInformation itemRequestInformation){
         ItemHoldResponse itemHoldResponse = requestService.holdItem(itemRequestInformation);
@@ -62,13 +67,6 @@ public class RequestController {
     public ResponseEntity<RecallResponse> recallItem(@RequestBody RecallRequest recallRequest){
         RecallResponse recallResponse = requestService.recallItem(recallRequest);
         return  new ResponseEntity<RecallResponse>(recallResponse, new HttpHeaders(), HttpStatus.OK);
-    }
-
-
-    @PostMapping("/hold-requests/{trackingId}")
-    public ResponseEntity<NYPLHoldResponse> nyplHoldItem(@PathVariable("jobId") String jobId){
-        NYPLHoldResponse nyplHoldResponse = requestService.nyplHoldItem(jobId);
-        return  new ResponseEntity<NYPLHoldResponse>(nyplHoldResponse, new HttpHeaders(), HttpStatus.OK);
     }
 
     @PostMapping("/recap/hold-requests")

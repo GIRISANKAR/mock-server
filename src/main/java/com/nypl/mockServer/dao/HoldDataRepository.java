@@ -8,5 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface HoldDataRepository extends JpaRepository<HoldData,Integer> {
     int deleteByItemBarcode(String itemBarcode);
+    HoldData findByTrackingId(String trackingId);
 
 }

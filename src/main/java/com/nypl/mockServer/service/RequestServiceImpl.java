@@ -176,15 +176,15 @@ public class RequestServiceImpl implements RequestService {
     public NYPLHoldResponse nyplHoldItem(String trackingId) {
         NYPLHoldResponse nyplHoldResponse = new NYPLHoldResponse();
         NYPLHoldData nyplHoldData = new NYPLHoldData();
-       /* nyplHoldData.setCreatedDate(DateFormat());
-        nyplHoldData.setNyplSource(nyplHoldRequest.getNyplSource());
-        nyplHoldData.setPatron(nyplHoldRequest.getPatron());
-        nyplHoldData.setPickupLocation(nyplHoldRequest.getPickupLocation());
-        nyplHoldData.setRecord(nyplHoldRequest.getRecord());
-        nyplHoldData.setRecordType(nyplHoldRequest.getRecordType());
-        nyplHoldData.setNumberOfCopies(nyplHoldRequest.getNumberOfCopies());
-        nyplHoldData.setNeededBy(nyplHoldRequest.getNeededBy());
-        nyplHoldData.setJobId("18");*/
+        try{
+            if(holdDataRepository.findByTrackingId(trackingId)!=null) {
+                nyplHoldData.setCreatedDate(DateFormat());
+                nyplHoldData.setJobId("14");
+            }
+
+        }catch (Exception e){
+            nyplHoldData.setJobId("15");
+        }
         nyplHoldResponse.setData(nyplHoldData);
         return nyplHoldResponse;
     }
